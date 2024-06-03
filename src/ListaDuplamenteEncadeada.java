@@ -17,7 +17,57 @@ public class ListaDuplamenteEncadeada {
             cauda = novoNo;
         }
     }
+        
+    public void adicionarInicio(Integer elemento) {
+    No novoNo = new No(elemento);
+    if (cabeca == null) {
+        cabeca = cauda = novoNo;
+    } else {
+        novoNo.setProximo(cabeca);
+        cabeca.setAnterior(novoNo);
+        cabeca = novoNo;
+    }
+}
 
+    public void adicionarFim(Integer elemento) {
+    No novoNo = new No(elemento);
+    if (cabeca == null) {
+        cabeca = cauda = novoNo;
+    } else {
+        cauda.setProximo(novoNo);
+        novoNo.setAnterior(cauda);
+        cauda = novoNo;
+    }
+}
+
+    public boolean removerInicio() {
+    if (cabeca == null) {
+        return false; // Lista vazia, não há o que remover
+    }
+    if (cabeca == cauda) {
+        // Se há apenas um elemento na lista
+        cabeca = cauda = null;
+        return true;
+    }
+    cabeca = cabeca.getProximo();
+    cabeca.setAnterior(null);
+    return true;
+}
+
+    public boolean removerFim() {
+    if (cabeca == null) {
+        return false; // Lista vazia, não há o que remover
+    }
+    if (cabeca == cauda) {
+        // Se há apenas um elemento na lista
+        cabeca = cauda = null;
+        return true;
+    }
+    cauda = cauda.getAnterior();
+    cauda.setProximo(null);
+    return true;
+}
+    
     public boolean remover(Integer elemento) {
         No atual = cabeca;
         while (atual != null) {
